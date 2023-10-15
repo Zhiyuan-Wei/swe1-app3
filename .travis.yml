@@ -1,0 +1,30 @@
+language: python
+
+python:
+  - 3.9
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - python manage.py migrate
+  - python manage.py collectstatic --noinput
+
+script:
+  - black --check .
+  - flake8 .
+  - coverage run --source=swe1_app3,polls manage.py test
+
+after_script:
+  - coveralls
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id:
+    secure: "AKIA576KQV22F4CSKT4I"
+  secret_access_key:
+    secure: "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"
+  region: "us-west-2"
+  app: "polls"
+  env: "django-env"
+  bucket_name: "the-target-S3-bucket"
