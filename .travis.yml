@@ -27,3 +27,6 @@ deploy:
   app: $APP_NAME
   env: $ENV
   bucket_name: $BUCKET_NAME
+  on:
+    repo: Zhiyuan-Wei/swe1-app3
+    branch: main
