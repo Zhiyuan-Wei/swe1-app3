@@ -26,4 +26,4 @@ deploy:
   region: $REGION
   app: $APP_NAME
   env: $ENV
-  bucket_name: "the-target-S3-bucket"
+  bucket_name: $BUCKET_NAME
